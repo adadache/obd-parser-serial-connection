@@ -1,6 +1,6 @@
 'use strict';
 
-var serialport = require('serialport')
+var SerialPort = require('serialport')
   , Promise = require('bluebird')
   , VError = require('verror')
   , conn = null
@@ -63,7 +63,7 @@ module.exports = function (opts) {
         });
 
         // Create our connection
-        conn = new serialport.SerialPort(opts.serialPath, opts.serialOpts);
+        conn = new SerialPort(opts.serialPath, opts.serialOpts);
 
         // Connect to the serial port
         conn.on('open', function () {

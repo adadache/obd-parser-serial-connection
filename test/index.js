@@ -15,26 +15,24 @@ describe('obd-serial-connection', function () {
 
   function getDummyCon (err) {
     return proxyquire('index.js', {
-      serialport: {
-        SerialPort: (function () {
+      serialport: (function () {
 
-          function SerialPort () {
-            EventEmitter.call(this);
+        function serialport () {
+          EventEmitter.call(this);
 
-            setTimeout((function () {
-              if (err) {
-                this.emit('error', new Error('fake error'));
-              } else {
-                this.emit('open');
-              }
-            }).bind(this));
-          }
-          util.inherits(SerialPort, EventEmitter);
+          setTimeout((function () {
+            if (err) {
+              this.emit('error', new Error('fake error'));
+            } else {
+              this.emit('open');
+            }
+          }).bind(this));
+        }
+        util.inherits(serialport, EventEmitter);
 
-          return SerialPort;
+        return serialport;
 
-        })()
-      }
+      })()
     });
   }
 
@@ -53,13 +51,13 @@ describe('obd-serial-connection', function () {
   });
 
   it('should throw an assertion error', function () {
-    expect(con.bind(con)).to.throw('AssertionError');
+    expect(con.bind(con)).to.throw();
   });
 
   it('should throw an assertion error', function () {
     expect(con.bind(con, {
       serialPath: 'dev/some-path',
-    })).to.throw('AssertionError');
+    })).to.throw();
   });
 
   it('should return a function', function () {
