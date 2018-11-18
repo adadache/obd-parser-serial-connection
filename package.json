@@ -1,6 +1,6 @@
 {
   "name": "obd-parser-serial-connection",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A serial connection wrapper for use with odb-parser",
   "main": "index.js",
   "scripts": {
